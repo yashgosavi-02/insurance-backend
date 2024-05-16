@@ -40,12 +40,11 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests((authorize) ->
                 //authorize.anyRequest().authenticated()
-                authorize.requestMatchers(HttpMethod.GET, "/api/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.POST, "/api/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.PUT, "/api/**").hasRole("ADMIN")
-                        .requestMatchers(HttpMethod.DELETE, "/api/**").hasRole("ADMIN")
-                        .requestMatchers("/login").permitAll()
-                        .requestMatchers("/register").permitAll()
+                authorize
+                        .requestMatchers("/api/**").hasRole("ADMIN")
+                        .requestMatchers("auth/login").permitAll()
+                        .requestMatchers("auth/register").permitAll()
+                        .requestMatchers("/insurance/life/filter").permitAll()
                         .requestMatchers("/register/admin").permitAll()
                         );
         http.httpBasic(Customizer.withDefaults());

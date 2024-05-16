@@ -13,8 +13,7 @@ public class RegisterDto {
     private String email;
     private String city;
     private String state;
-    private String country;
     private Date dob;
-
+    private String gender;
 }
 

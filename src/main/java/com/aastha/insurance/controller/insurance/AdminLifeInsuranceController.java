@@ -5,14 +5,15 @@ import com.aastha.insurance.service.insurance.LifeInsuranceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/insurance/life")
-public class LifeInsuranceController {
+public class AdminLifeInsuranceController {
 
     private LifeInsuranceService lifeInsuranceService;
 
-    public LifeInsuranceController(LifeInsuranceService lifeInsuranceService) {
+    public AdminLifeInsuranceController(LifeInsuranceService lifeInsuranceService) {
         this.lifeInsuranceService = lifeInsuranceService;
     }
 
@@ -39,11 +40,5 @@ public class LifeInsuranceController {
     public List<LifeInsurance> delete(@PathVariable Integer id){
         return lifeInsuranceService.delete(id);
     }
-//    @GetMapping("/sort")
-//    public List<LifeInsurance> sort(@RequestParam("policyTerm") String term,
-//                                    @RequestParam("coverageAmount") String cover,
-//                                    @RequestParam("medicalTestRequired") String medicalTest){
-//
-//    }
 
 }

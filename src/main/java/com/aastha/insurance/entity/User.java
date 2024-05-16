@@ -21,7 +21,7 @@ public class User{
     private String email;
     private String city;
     private String state;
-    private String country;
+    private String gender;
 
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")

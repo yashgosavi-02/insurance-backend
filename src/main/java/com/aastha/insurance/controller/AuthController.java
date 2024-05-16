@@ -22,6 +22,7 @@ import com.aastha.insurance.entity.User;
 import java.util.Arrays;
 
 @RestController
+@RequestMapping("/auth")
 public class AuthController {
 
     @Autowired
@@ -57,6 +58,7 @@ public class AuthController {
             return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
         }
 
+        System.out.println(registerDto);
         User user = new User();
         user.setUserName(registerDto.getUserName());
         user.setPhone(registerDto.getPhone());
@@ -64,8 +66,8 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         user.setCity(registerDto.getCity());
         user.setState(registerDto.getState());
-        user.setCountry(registerDto.getCountry());
         user.setDob(registerDto.getDob());
+        user.setGender(registerDto.getGender());
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
         userRepository.save(user);
 
@@ -85,8 +87,8 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         user.setCity(registerDto.getCity());
         user.setState(registerDto.getState());
-        user.setCountry(registerDto.getCountry());
         user.setDob(registerDto.getDob());
+        user.setGender(registerDto.getGender());
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_ADMIN")));
         userRepository.save(user);
 
