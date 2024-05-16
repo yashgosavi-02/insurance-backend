@@ -21,14 +21,19 @@ public class UserLifeInsuranceController {
     }
 
     @GetMapping("/filter")
-    public List<LifeInsurance> sort(@RequestParam(value = "policyTerm",defaultValue = "all") String term,
+    public List<LifeInsurance> sort(@RequestParam(value = "policyTerm",defaultValue = "all") int term,
                                     @RequestParam(value = "coverageAmount",defaultValue = "all") String cover,
-                                    @RequestParam(value = "medicalTestRequired",defaultValue = "all") String medicalTest){
+                                    @RequestParam(value = "medicalTestRequired",defaultValue = "all") String medicalTest,
+                                    @RequestParam(value = "smokerStatus",defaultValue = "all") String smokerStatus,
+                                    @RequestParam(value = "gender",defaultValue = "male") String gender){
         List<LifeInsurance> result=null;
-        if(Objects.equals(term, "all") && Objects.equals(cover, "all") && Objects.equals(medicalTest, "all")){
-            result = lifeInsuranceService.getAll();
+        if(Objects.equals(term, "all") && Objects.equals(cover, "all") && Objects.equals(medicalTest, "all")
+                && Objects.equals(smokerStatus, "all") && Objects.equals(gender.toLowerCase(), "male")){
+            result = lifeInsuranceService.findByGender("Male");
         }
-
+        else {
+           result= lifeInsuranceService.findByFilter(term,cover,medicalTest,smokerStatus,gender);
+        }
         return result;
     }
 }

@@ -10,4 +10,7 @@ public interface LifeInsuranceService {
     public List<LifeInsurance> add(LifeInsurance lifeInsurance);
     public List<LifeInsurance> delete(Integer id);
     public List<LifeInsurance> modify(LifeInsurance lifeInsurance);
+    public List<LifeInsurance> findByGender(String gender);
+    public List<LifeInsurance> findByFilter(
+            int policyTerm,String coverageAmount,String medicalTestRequired,String smokerStatus,String gender);
 }

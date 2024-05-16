@@ -52,4 +52,16 @@ public class LifeInsuranceImpl implements LifeInsuranceService{
         repository.save(lifeInsurance);
         return repository.findAll();
     }
+
+    @Override
+    public List<LifeInsurance> findByGender(String gender) {
+        return repository.findAllByGender(gender);
+    }
+
+    @Override
+    public List<LifeInsurance> findByFilter(int policyTerm, String coverageAmount, String medicalTestRequired, String smokerStatus, String gender) {
+        return repository.findAllByPolicyTermAndCoverageAmountAndMedicalTestAndSmokerStatusAndGender(
+        policyTerm,coverageAmount,medicalTestRequired,smokerStatus,gender
+        );
+    }
 }

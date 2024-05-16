@@ -48,7 +48,7 @@ public class AuthController {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return new ResponseEntity<>("User logged-in successfully !", HttpStatus.OK);
+        return new ResponseEntity<>("User logged-in successfully !",HttpStatus.OK);
     }
 
     @PostMapping("/register")
@@ -67,7 +67,6 @@ public class AuthController {
         user.setCity(registerDto.getCity());
         user.setState(registerDto.getState());
         user.setDob(registerDto.getDob());
-        user.setGender(registerDto.getGender());
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
         userRepository.save(user);
 
@@ -88,7 +87,6 @@ public class AuthController {
         user.setCity(registerDto.getCity());
         user.setState(registerDto.getState());
         user.setDob(registerDto.getDob());
-        user.setGender(registerDto.getGender());
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_ADMIN")));
         userRepository.save(user);
 

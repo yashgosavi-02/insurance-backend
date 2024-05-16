@@ -14,6 +14,5 @@ public class RegisterDto {
     private String city;
     private String state;
     private Date dob;
-    private String gender;
 }
 

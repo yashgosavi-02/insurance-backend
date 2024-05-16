@@ -16,4 +16,6 @@ public class LifeInsurance {
     private Integer policyTerm;
     private Integer premium;
     private String medicalTest;
+    private String gender;
+    private String smokerStatus;
 }
