@@ -11,6 +11,11 @@ public interface LifeInsuranceService {
     public List<LifeInsurance> delete(Integer id);
     public List<LifeInsurance> modify(LifeInsurance lifeInsurance);
     public List<LifeInsurance> findByGender(String gender);
+    public List<LifeInsurance> findByCoverageAmount(String coverageAmount);
+    public List<LifeInsurance> findByPolicyTerm(String policyTerm);
+    public List<LifeInsurance> findByMedicalTest(String medicalTest);
+    public List<LifeInsurance> findBySmokerStatus(String smokerStatus);
+    public List<LifeInsurance> findByAge(String age);
     public List<LifeInsurance> findByFilter(
-            int policyTerm,String coverageAmount,String medicalTestRequired,String smokerStatus,String gender);
+            String policyTerm,String coverageAmount,String medicalTestRequired,String smokerStatus,String gender);
 }

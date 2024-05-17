@@ -59,7 +59,32 @@ public class LifeInsuranceImpl implements LifeInsuranceService{
     }
 
     @Override
-    public List<LifeInsurance> findByFilter(int policyTerm, String coverageAmount, String medicalTestRequired, String smokerStatus, String gender) {
+    public List<LifeInsurance> findByCoverageAmount(String coverageAmount) {
+        return repository.findAllByCoverageAmount(coverageAmount);
+    }
+
+    @Override
+    public List<LifeInsurance> findByPolicyTerm(String policyTerm) {
+        return repository.findAllByPolicyTerm(policyTerm);
+    }
+
+    @Override
+    public List<LifeInsurance> findByMedicalTest(String medicalTest) {
+        return repository.findAllByMedicalTest(medicalTest);
+    }
+
+    @Override
+    public List<LifeInsurance> findBySmokerStatus(String smokerStatus) {
+        return repository.findAllBySmokerStatus(smokerStatus);
+    }
+
+    @Override
+    public List<LifeInsurance> findByAge(String age) {
+        return repository.findAllByAge(age);
+    }
+
+    @Override
+    public List<LifeInsurance> findByFilter(String policyTerm, String coverageAmount, String medicalTestRequired, String smokerStatus, String gender) {
         return repository.findAllByPolicyTermAndCoverageAmountAndMedicalTestAndSmokerStatusAndGender(
         policyTerm,coverageAmount,medicalTestRequired,smokerStatus,gender
         );

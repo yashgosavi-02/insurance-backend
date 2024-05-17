@@ -13,9 +13,10 @@ public class LifeInsurance {
 
     private String company;
     private String coverageAmount;
-    private Integer policyTerm;
-    private Integer premium;
+    private String policyTerm;
+    private String premium;
     private String medicalTest;
     private String gender;
+    private String age;
     private String smokerStatus;
 }
