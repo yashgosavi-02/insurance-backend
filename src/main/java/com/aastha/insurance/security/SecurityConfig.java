@@ -46,6 +46,7 @@ public class SecurityConfig {
                         .requestMatchers("auth/register").permitAll()
                         .requestMatchers("/insurance/life/filter").permitAll()
                         .requestMatchers("/register/admin").permitAll()
+                        .requestMatchers("/user/**").hasRole("ADMIN")
                         );
         http.httpBasic(Customizer.withDefaults());
         http.csrf(csrf -> csrf.disable());
