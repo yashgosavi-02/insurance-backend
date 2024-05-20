@@ -8,12 +8,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class LifeInsuranceImpl implements LifeInsuranceService{
+public class LifeInsuranceServiceImpl implements LifeInsuranceService{
 
 
     private LifeInsuranceRepository repository;
 
-    public LifeInsuranceImpl(LifeInsuranceRepository repository) {
+    public LifeInsuranceServiceImpl(LifeInsuranceRepository repository) {
         this.repository = repository;
     }
 

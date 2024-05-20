@@ -8,6 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/insurance/life")
+@CrossOrigin(origins = "http://localhost:5173")
 public class AdminLifeInsuranceController {
 
     private LifeInsuranceService lifeInsuranceService;
@@ -17,7 +18,8 @@ public class AdminLifeInsuranceController {
     }
 
     @GetMapping("/get")
-    public List<LifeInsurance> getAll(){
+    public List<LifeInsurance> getAll()
+    {
         return lifeInsuranceService.getAll();
     }
 

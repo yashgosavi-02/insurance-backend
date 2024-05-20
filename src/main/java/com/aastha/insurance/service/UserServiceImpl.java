@@ -2,6 +2,7 @@ package com.aastha.insurance.service;
 
 import com.aastha.insurance.dao.UserRepository;
 import com.aastha.insurance.entity.User;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,6 +47,21 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void deleteUser(int id) {
+        Optional<User> optionalUser = userRepository.findById(id);
+        if (optionalUser.isPresent()) {
+            User user = optionalUser.get();
+
+            // Clear the roles association
+            user.getRoles().clear();
+
+            // Save the user without roles
+            userRepository.save(user);
+
+            // Now delete the user
+            userRepository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("User not found with ID: " + id);
+        }
         userRepository.deleteById(id);
     }
 

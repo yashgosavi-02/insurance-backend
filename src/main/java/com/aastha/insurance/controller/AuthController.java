@@ -5,7 +5,8 @@ import com.aastha.insurance.dao.RoleRepository;
 import com.aastha.insurance.dao.UserRepository;
 import com.aastha.insurance.dto.LoginDto;
 import com.aastha.insurance.dto.RegisterDto;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.aastha.insurance.entity.User;
+import com.aastha.insurance.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,31 +14,38 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import com.aastha.insurance.entity.User;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin("http://localhost:5173")
 public class AuthController {
 
-    @Autowired
+
     private AuthenticationManager authenticationManager;
 
-    @Autowired
+
     private UserRepository userRepository;
 
-    @Autowired
+
     private RoleRepository roleRepository;
 
-    @Autowired
+
     private PasswordEncoder passwordEncoder;
 
+    private UserService userService;
 
+
+    public AuthController(AuthenticationManager authenticationManager, UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, UserService userService) {
+        this.authenticationManager = authenticationManager;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.userService = userService;
+    }
 
     @PostMapping("/login")
     public ResponseEntity<String> userLogin(@RequestBody LoginDto loginDto) {
@@ -47,8 +55,16 @@ public class AuthController {
 
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
-
-        return new ResponseEntity<>("User logged-in successfully !",HttpStatus.OK);
+        String email= authentication.getName();
+        User user = userService.findByEmail(email);
+        String result;
+        if (Objects.equals(user.getRoles().get(0).getName(), "ROLE_ADMIN")) {
+            result = "Admin";
+        }
+        else{
+            result="User";
+        }
+        return new ResponseEntity<>(result,HttpStatus.OK);
     }
 
     @PostMapping("/register")
@@ -68,26 +84,6 @@ public class AuthController {
         user.setState(registerDto.getState());
         user.setDob(registerDto.getDob());
         user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_USER")));
-        userRepository.save(user);
-
-        return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
-    }
-    @PostMapping("/register/admin")
-    public ResponseEntity<String> adminRegister(@RequestBody RegisterDto registerDto) {
-
-        if (userRepository.existsByEmail(registerDto.getEmail())) {
-            return new ResponseEntity<>("Email is already taken!", HttpStatus.BAD_REQUEST);
-        }
-
-        User user = new User();
-        user.setUserName(registerDto.getUserName());
-        user.setPhone(registerDto.getPhone());
-        user.setEmail(registerDto.getEmail());
-        user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
-        user.setCity(registerDto.getCity());
-        user.setState(registerDto.getState());
-        user.setDob(registerDto.getDob());
-        user.setRoles(Arrays.asList(roleRepository.findByName("ROLE_ADMIN")));
         userRepository.save(user);
 
         return new ResponseEntity<>("User registered successfully", HttpStatus.OK);
