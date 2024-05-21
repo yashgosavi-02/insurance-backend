@@ -50,14 +50,8 @@ public class UserServiceImpl implements UserService{
         Optional<User> optionalUser = userRepository.findById(id);
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
-
-            // Clear the roles association
             user.getRoles().clear();
-
-            // Save the user without roles
             userRepository.save(user);
-
-            // Now delete the user
             userRepository.deleteById(id);
         } else {
             throw new EntityNotFoundException("User not found with ID: " + id);
