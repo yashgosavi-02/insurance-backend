@@ -12,7 +12,7 @@ public class HomeInsurance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String houseValue;
-    private String householdItems;
+    private String householdItemsValue;
     private String policyTerm;
     private String houseAge;
     private String company;

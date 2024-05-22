@@ -1,4 +1,4 @@
-package com.aastha.insurance.controller.insurance;
+package com.aastha.insurance.controller.insurance.user;
 
 import com.aastha.insurance.entity.insurance.LifeInsurance;
 import com.aastha.insurance.service.insurance.LifeInsuranceService;

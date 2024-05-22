@@ -1,4 +1,4 @@
-package com.aastha.insurance.controller.insurance;
+package com.aastha.insurance.controller.insurance.user;
 
 
 import com.aastha.insurance.entity.insurance.HealthInsurance;
@@ -12,6 +12,7 @@ import java.util.Objects;
 @RequestMapping("/insurance/health")
 @CrossOrigin(origins = "http://localhost:5173")
 public class UserHealthInsuranceController {
+
     private HealthInsuranceService healthInsuranceService;
 
     public UserHealthInsuranceController(HealthInsuranceService healthInsuranceService) {

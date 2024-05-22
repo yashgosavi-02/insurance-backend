@@ -1,8 +1,7 @@
-package com.aastha.insurance.controller.insurance;
+package com.aastha.insurance.controller.insurance.admin;
 
 
 import com.aastha.insurance.entity.insurance.HealthInsurance;
-import com.aastha.insurance.entity.insurance.LifeInsurance;
 import com.aastha.insurance.service.insurance.HealthInsuranceService;
 import org.springframework.web.bind.annotation.*;
 
