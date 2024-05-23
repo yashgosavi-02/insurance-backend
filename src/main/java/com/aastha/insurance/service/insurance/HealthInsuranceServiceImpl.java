@@ -67,4 +67,9 @@ public class HealthInsuranceServiceImpl implements HealthInsuranceService{
     public List<HealthInsurance> findByAge(String age) {
         return repository.findAllByAge(age);
     }
+
+    @Override
+    public List<HealthInsurance> findByCompany(String company) {
+        return repository.findAllByCompany(company);
+    }
 }

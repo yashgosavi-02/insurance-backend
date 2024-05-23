@@ -1,10 +1,12 @@
 package com.aastha.insurance.controller.insurance.admin;
 
+import com.aastha.insurance.entity.insurance.HealthInsurance;
 import com.aastha.insurance.entity.insurance.LifeInsurance;
 import com.aastha.insurance.service.insurance.LifeInsuranceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/insurance/life")
@@ -37,9 +39,15 @@ public class AdminLifeInsuranceController {
     public List<LifeInsurance> update(@RequestBody LifeInsurance lifeInsurance){
         return lifeInsuranceService.modify(lifeInsurance);
     }
-    @DeleteMapping("/get/{id}")
+    @DeleteMapping("/delete/{id}")
     public List<LifeInsurance> delete(@PathVariable Integer id){
         return lifeInsuranceService.delete(id);
     }
-
+    @GetMapping("/filter")
+    public List<LifeInsurance> filter(@RequestParam(value = "company",defaultValue = "all") String company){
+        if(Objects.equals(company,"all")){
+            return lifeInsuranceService.getAll();
+        }
+        return lifeInsuranceService.findByCompany(company);
+    }
 }

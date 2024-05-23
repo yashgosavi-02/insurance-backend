@@ -48,7 +48,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> userLogin(@RequestBody LoginDto loginDto) {
+    public ResponseEntity<User> userLogin(@RequestBody LoginDto loginDto) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                 loginDto.getEmail(), loginDto.getPassword()));
 
@@ -57,14 +57,7 @@ public class AuthController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         String email= authentication.getName();
         User user = userService.findByEmail(email);
-        String result;
-        if (Objects.equals(user.getRoles().get(0).getName(), "ROLE_ADMIN")) {
-            result = "Admin";
-        }
-        else{
-            result="User";
-        }
-        return new ResponseEntity<>(result,HttpStatus.OK);
+        return new ResponseEntity<>(user,HttpStatus.OK);
     }
 
     @PostMapping("/register")

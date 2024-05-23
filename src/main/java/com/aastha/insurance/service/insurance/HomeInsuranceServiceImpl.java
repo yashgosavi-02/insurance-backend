@@ -63,4 +63,9 @@ public class HomeInsuranceServiceImpl implements HomeInsuranceService{
     public List<HomeInsurance> findByHouseAge(String houseAge) {
         return repository.findAllByHouseAge(houseAge);
     }
+
+    @Override
+    public List<HomeInsurance> findByCompany(String company) {
+        return repository.findAllByCompany(company);
+    }
 }

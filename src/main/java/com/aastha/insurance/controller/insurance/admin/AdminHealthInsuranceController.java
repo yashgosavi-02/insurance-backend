@@ -6,6 +6,7 @@ import com.aastha.insurance.service.insurance.HealthInsuranceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/insurance/health")
@@ -40,5 +41,12 @@ public class AdminHealthInsuranceController {
     @DeleteMapping("/get/{id}")
     public List<HealthInsurance> delete(@PathVariable Integer id){
         return healthInsuranceService.delete(id);
+    }
+    @GetMapping("/filter")
+    public List<HealthInsurance> filter(@RequestParam(value = "company",defaultValue = "all") String company){
+        if(Objects.equals(company,"all")){
+            return healthInsuranceService.getAll();
+        }
+        return healthInsuranceService.findByCompany(company);
     }
 }

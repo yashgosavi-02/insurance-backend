@@ -1,6 +1,7 @@
 package com.aastha.insurance.service.insurance;
 
 import com.aastha.insurance.entity.insurance.HealthInsurance;
+import com.aastha.insurance.entity.insurance.HomeInsurance;
 import com.aastha.insurance.entity.insurance.LifeInsurance;
 
 import java.util.List;
@@ -16,4 +17,5 @@ public interface HealthInsuranceService {
     public List<HealthInsurance> findByPolicyTerm(String policyTerm);
     public List<HealthInsurance> findByChronicDisease(String disease);
     public List<HealthInsurance> findByAge(String age);
+    public List<HealthInsurance> findByCompany(String company);
 }

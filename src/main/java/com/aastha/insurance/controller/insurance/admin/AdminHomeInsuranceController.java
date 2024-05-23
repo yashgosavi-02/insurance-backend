@@ -6,6 +6,7 @@ import com.aastha.insurance.service.insurance.HomeInsuranceService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/api/insurance/home")
@@ -40,6 +41,14 @@ public class AdminHomeInsuranceController {
     @DeleteMapping("/get/{id}")
     public List<HomeInsurance> delete(@PathVariable Integer id){
         return homeInsuranceService.delete(id);
+    }
+
+    @GetMapping("/filter")
+    public List<HomeInsurance> filter(@RequestParam(value = "company",defaultValue = "all") String company){
+        if(Objects.equals(company,"all")){
+            return homeInsuranceService.getAll();
+        }
+        return homeInsuranceService.findByCompany(company);
     }
 
 }

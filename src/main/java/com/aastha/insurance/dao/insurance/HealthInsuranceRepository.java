@@ -15,4 +15,5 @@ public interface HealthInsuranceRepository extends JpaRepository<HealthInsurance
     public List<HealthInsurance> findAllByPolicyTerm(String policyTerm);
     public List<HealthInsurance> findAllByChronicDisease(String smokerStatus);
     public List<HealthInsurance> findAllByAge(String age);
+    public List<HealthInsurance> findAllByCompany(String company);
 }

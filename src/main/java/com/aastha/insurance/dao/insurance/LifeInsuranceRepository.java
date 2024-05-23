@@ -1,5 +1,6 @@
 package com.aastha.insurance.dao.insurance;
 
+import com.aastha.insurance.entity.insurance.HomeInsurance;
 import com.aastha.insurance.entity.insurance.LifeInsurance;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -15,4 +16,5 @@ public interface LifeInsuranceRepository extends JpaRepository<LifeInsurance,Int
     List<LifeInsurance> findAllByMedicalTest(String medicalTest);
     List<LifeInsurance> findAllBySmokerStatus(String smokerStatus);
     List<LifeInsurance> findAllByAge(String age);
+    List<LifeInsurance> findAllByCompany(String company);
 }

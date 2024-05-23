@@ -84,6 +84,11 @@ public class LifeInsuranceServiceImpl implements LifeInsuranceService{
     }
 
     @Override
+    public List<LifeInsurance> findByCompany(String company) {
+        return repository.findAllByCompany(company);
+    }
+
+    @Override
     public List<LifeInsurance> findByFilter(String policyTerm, String coverageAmount, String medicalTestRequired, String smokerStatus, String gender) {
         return repository.findAllByPolicyTermAndCoverageAmountAndMedicalTestAndSmokerStatusAndGender(
         policyTerm,coverageAmount,medicalTestRequired,smokerStatus,gender
