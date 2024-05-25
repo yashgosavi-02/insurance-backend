@@ -43,8 +43,8 @@ public class AdminHomeInsuranceController {
         return homeInsuranceService.delete(id);
     }
 
-    @GetMapping("/filter")
-    public List<HomeInsurance> filter(@RequestParam(value = "company",defaultValue = "all") String company){
+    @GetMapping("/filter/{company}")
+    public List<HomeInsurance> filter(@PathVariable String company){
         if(Objects.equals(company,"all")){
             return homeInsuranceService.getAll();
         }

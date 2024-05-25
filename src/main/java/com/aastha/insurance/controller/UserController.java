@@ -2,7 +2,9 @@ package com.aastha.insurance.controller;
 
 import com.aastha.insurance.dao.RoleRepository;
 import com.aastha.insurance.entity.User;
+import com.aastha.insurance.service.EmailService;
 import com.aastha.insurance.service.UserService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,6 +24,7 @@ public class UserController {
     private PasswordEncoder passwordEncoder;
 
     private RoleRepository roleRepository;
+
 
     public UserController(UserService userService, PasswordEncoder passwordEncoder, RoleRepository roleRepository) {
         this.userService = userService;
@@ -91,4 +94,5 @@ public class UserController {
         userService.deleteUser(id);
         return userService.findAll();
     }
+
 }
