@@ -52,7 +52,6 @@ public class UserServiceImpl implements UserService{
             User user = optionalUser.get();
             user.getRoles().clear();
             userRepository.save(user);
-            userRepository.deleteById(id);
         } else {
             throw new EntityNotFoundException("User not found with ID: " + id);
         }
